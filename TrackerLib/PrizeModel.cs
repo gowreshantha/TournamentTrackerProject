@@ -34,5 +34,19 @@ namespace TrackerLib
         /// zero if it is not used. The percentage is a fraction of 1 (so 0.5 for 50%)
         /// </summary>
         public double PrizePercentage { get; set; }
+
+        public PrizeModel()
+        {
+
+        }
+
+        public PrizeModel(string placeName, string placeNumber, string prizeAmount, string prizePercentage)
+        {
+            PlaceName = placeName;
+            PlaceNumber = int.Parse(placeNumber);
+            PrizeAmount = decimal.Parse(prizeAmount);
+            PrizePercentage = double.Parse(prizePercentage);
+
+        }
     }
 }
