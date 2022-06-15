@@ -118,9 +118,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Design\Table Design.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\TrackerLib\TrackerLib.csproj">
       <Project>{be25fcbb-fd20-4ef5-9a7b-de66439bfa24}</Project>
       <Name>TrackerLib</Name>
