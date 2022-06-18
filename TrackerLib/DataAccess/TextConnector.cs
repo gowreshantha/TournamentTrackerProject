@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using TrackerLib.Models;
 
-namespace TrackerLib
+namespace TrackerLib.DataAccess
 {
-    public class TextConnection : IDataConnection
+    public class TextConnector : IDataConnection
     {
         // TODO - Implement method to save
         /// <summary>
