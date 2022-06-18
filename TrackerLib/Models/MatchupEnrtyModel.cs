@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TrackerLib
+namespace TrackerLib.Models
 {
     /// <summary>
     /// Represents one team in a matchup.

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrackerLib;
+using TrackerLib.Models;
 
 namespace TrackerUI
 {
@@ -37,6 +38,15 @@ namespace TrackerUI
                 {
                     connection.CreatePrize(prizeModel);
                 }
+
+                placeNameValue.Text = "";
+                placeNumberValue.Text = "";
+                prizeAmountValue.Text = "0";
+                prizePercentageValue.Text = "0";
+            }
+            else
+            {
+                MessageBox.Show("This form has invalid information, Please check and it and try again.");
             }
         }
 

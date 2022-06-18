@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TrackerLib
+namespace TrackerLib.Models
 {
     /// <summary>
     /// Represents what the prize is for the given place.
