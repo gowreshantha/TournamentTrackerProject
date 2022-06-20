@@ -139,6 +139,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Required\Tournaments.bak" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -148,6 +149,9 @@
       <Project>{be25fcbb-fd20-4ef5-9a7b-de66439bfa24}</Project>
       <Name>TrackerLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Required\Table Design.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

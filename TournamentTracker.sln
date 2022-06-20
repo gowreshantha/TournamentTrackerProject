@@ -5,17 +5,7 @@ VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackerUI", "TrackerUI\TrackerUI.csproj", "{3EC121D2-D942-4918-B956-722F8F2F8381}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Design", "Design", "{5064626E-9825-4BA8-A093-2173DD97E8EE}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\OneDrive - Happiest Minds Technologies Limited\Desktop\Table Design.png = ..\..\..\OneDrive - Happiest Minds Technologies Limited\Desktop\Table Design.png
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrackerLib", "TrackerLib\TrackerLib.csproj", "{BE25FCBB-FD20-4EF5-9A7B-DE66439BFA24}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{C2A6D07E-1254-4D0C-A7A1-CC021C4739EE}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\Backup\Tournaments.bak = ..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\Backup\Tournaments.bak
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
