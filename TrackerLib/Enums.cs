@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TrackerLib
 {
-    public enum Enums
+    public enum DatabaseType
     {
         Sql,
         TextFile
