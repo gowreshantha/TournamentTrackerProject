@@ -8,21 +8,23 @@ namespace TrackerLib
 {
     public class GlobalConfig
     {
-        public static IDataConnection Connections { get; private set; }
+        public static IDataConnection Connection { get; private set; }
 
-        public static void InitializeConnections(DatabaseType databaseType)
+        public static void InitializeConnections(Enums databaseType)
         {
             switch(databaseType)
             {
-                case DatabaseType.Sql:
+                case Enums.Sql:
                     // TODO - Create the SQL Connection
                     SQLConnector sql = new SQLConnector();
-                    Connections = sql;
+                    Connection = sql;
                     break;
-                case DatabaseType.TextFile:
+                case Enums.TextFile:
                     //TODO - Create the Text Connection
                     TextConnector text = new TextConnector();
-                    Connections = text;
+                    Connection = text;
+                    break;
+               default:
                     break;
             }
         }

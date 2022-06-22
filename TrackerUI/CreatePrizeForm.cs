@@ -35,8 +35,7 @@ namespace TrackerUI
                     prizeAmountValue.Text, 
                     prizePercentageValue.Text);
 
-                IDataConnection connection = GlobalConfig.Connections;
-                connection.CreatePrize(prizeModel);
+                GlobalConfig.Connection.CreatePrize(prizeModel);
  
                 placeNameValue.Text = "";
                 placeNumberValue.Text = "";
