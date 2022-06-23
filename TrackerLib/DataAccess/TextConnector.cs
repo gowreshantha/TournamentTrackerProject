@@ -10,8 +10,33 @@ namespace TrackerLib.DataAccess
     public class TextConnector : IDataConnection
     {
         private const string PrizeFile = "PrizeModels.csv";
+        private const string PersonFile = "PersonModels.csv";
 
-        // TODO - Implement method to save
+        /// <summary>
+        /// Saves a new person to the text file
+        /// </summary>
+        /// <param name="model">The person information</param>
+        /// <returns>The person information, including the unique identifier</returns>
+        public PersonModel CreatePerson(PersonModel model)
+        {
+            //Load the Text File and COnvert the text to List<PersonModel>
+            List<PersonModel> persons = PersonFile.GetFullFilePath().LoadFile().ConvertToPersonModels();
+
+            //Find the max ID and Add the new record with the new ID (max + 1)
+            int currentId = 1;
+            if(persons.Count > 0)
+            {
+                currentId = persons.OrderByDescending(x => x.Id).First().Id + 1;
+            }
+            model.Id = currentId;
+            persons.Add(model);
+
+            //Convert the peoples to List<string> and Save the List<string> to the text file
+            persons.SaveToPersonFile(PersonFile);
+
+            return model;
+        }
+
         /// <summary>
         /// Saves a new prize to the text file
         /// </summary>

@@ -53,5 +53,27 @@ namespace TrackerLib.DataAccess.TextHelper
             }
             File.WriteAllLines(fileName.GetFullFilePath(), lines);
         }
+
+        public static List<PersonModel> ConvertToPersonModels(this List<string> lines)
+        {
+            List<PersonModel> personModels = new List<PersonModel>();
+            foreach(var line in lines)
+            {
+                string[] row = line.Split(',');
+                PersonModel personModel = new PersonModel(row[0], row[1], row[2], row[3], row[4]);
+                personModels.Add(personModel);
+            }
+            return personModels;
+        }
+
+        public static void SaveToPersonFile(this List<PersonModel> persons, string fileName)
+        {
+            List<string> lines = new List<string>();
+            foreach(PersonModel personModel in persons)
+            {
+                lines.Add($"{personModel.Id},{personModel.FirstName},{personModel.LastName},{personModel.Email},{personModel.CellPhone}");
+            }
+            File.WriteAllLines(fileName.GetFullFilePath(), lines);
+        }
     }
 }
