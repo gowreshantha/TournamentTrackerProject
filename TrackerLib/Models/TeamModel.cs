@@ -19,11 +19,5 @@ namespace TrackerLib.Models
             TeamName = teamName;
             TeamMembers = teamMembers;
         }
-        public TeamModel(string id, string teamName, List<PersonModel> teamMembers)
-        {
-            Id = int.Parse(id);
-            TeamName = teamName;
-            TeamMembers = teamMembers;
-        }
     }
 }

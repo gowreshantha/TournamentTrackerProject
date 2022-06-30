@@ -51,14 +51,16 @@ namespace TrackerLib.DataAccess.TextHelper
             foreach (var line in lines)
             {
                 string[] row = line.Split(',');
-                TeamModel teamModel = null;
+                TeamModel teamModel = new TeamModel();
+
+                teamModel.Id = int.Parse(row[0]);
+                teamModel.TeamName = row[1];
 
                 string[] personIds = row[2].Split('|');
                 foreach(var id in personIds)
                 {
                     teamModel.TeamMembers.Add(persons.Where(x => x.Id == int.Parse(id)).First());
                 }
-                teamModel = new TeamModel(row[0], row[1], teamModel.TeamMembers);
                 teamModels.Add(teamModel);
             }
             return teamModels;

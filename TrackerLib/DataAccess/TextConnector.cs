@@ -96,5 +96,10 @@ namespace TrackerLib.DataAccess
             //Load the Text File and Convert the text to List<PrizeModel>
             return PersonFile.GetFullFilePath().LoadFile().ConvertToPersonModels();
         }
+
+        public List<TeamModel> GetAllTeams()
+        {
+            return TeamFile.GetFullFilePath().LoadFile().ConvertToTeamModels(PersonFile);
+        }
     }
 }
