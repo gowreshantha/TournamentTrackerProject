@@ -44,6 +44,38 @@ namespace TrackerLib.DataAccess.TextHelper
             return prizeModels;
         }
 
+        public static List<TeamModel> ConvertToTeamModels(this List<string> lines, string personFile)
+        {
+            List<TeamModel> teamModels = new List<TeamModel>();
+            List<PersonModel> persons = personFile.GetFullFilePath().LoadFile().ConvertToPersonModels();
+            foreach (var line in lines)
+            {
+                string[] row = line.Split(',');
+                TeamModel teamModel = null;
+
+                string[] personIds = row[2].Split('|');
+                foreach(var id in personIds)
+                {
+                    teamModel.TeamMembers.Add(persons.Where(x => x.Id == int.Parse(id)).First());
+                }
+                teamModel = new TeamModel(row[0], row[1], teamModel.TeamMembers);
+                teamModels.Add(teamModel);
+            }
+            return teamModels;
+        }
+
+        public static List<PersonModel> ConvertToPersonModels(this List<string> lines)
+        {
+            List<PersonModel> personModels = new List<PersonModel>();
+            foreach (var line in lines)
+            {
+                string[] row = line.Split(',');
+                PersonModel personModel = new PersonModel(row[0], row[1], row[2], row[3], row[4]);
+                personModels.Add(personModel);
+            }
+            return personModels;
+        }
+
         public static void SaveToPrizeFile(this List<PrizeModel> prizes, string fileName)
         {
             List<string> lines = new List<string>();
@@ -54,18 +86,6 @@ namespace TrackerLib.DataAccess.TextHelper
             File.WriteAllLines(fileName.GetFullFilePath(), lines);
         }
 
-        public static List<PersonModel> ConvertToPersonModels(this List<string> lines)
-        {
-            List<PersonModel> personModels = new List<PersonModel>();
-            foreach(var line in lines)
-            {
-                string[] row = line.Split(',');
-                PersonModel personModel = new PersonModel(row[0], row[1], row[2], row[3], row[4]);
-                personModels.Add(personModel);
-            }
-            return personModels;
-        }
-
         public static void SaveToPersonFile(this List<PersonModel> persons, string fileName)
         {
             List<string> lines = new List<string>();
@@ -74,6 +94,28 @@ namespace TrackerLib.DataAccess.TextHelper
                 lines.Add($"{personModel.Id},{personModel.FirstName},{personModel.LastName},{personModel.Email},{personModel.CellPhone}");
             }
             File.WriteAllLines(fileName.GetFullFilePath(), lines);
+        }
+
+        public static void SaveToTeamFile(this List<TeamModel> teams, string fileName)
+        {
+            List<string> lines = new List<string>();
+            foreach(TeamModel teamModel in teams)
+            {
+                lines.Add($"{teamModel.Id},{teamModel.TeamName},{ConvertPeronsListToIDs(teamModel.TeamMembers)}");
+            }
+            File.WriteAllLines(fileName.GetFullFilePath(), lines);
+        }
+
+        private static string ConvertPeronsListToIDs(List<PersonModel> model)
+        {
+            string output = "";
+            foreach(PersonModel person in model)
+            {
+                output += $"{person.Id}|";
+            }
+
+            output = output.Substring(0, output.Length - 1);
+            return output;
         }
     }
 }

@@ -6,8 +6,24 @@ namespace TrackerLib.Models
 {
     public class TeamModel
     {
-        public List<PersonModel> TeamMembers { get; set; } = new List<PersonModel>();
+        public int Id { get; set; }
         public string TeamName { get; set; }
-        public int MyProperty { get; set; }
+        public List<PersonModel> TeamMembers { get; set; } = new List<PersonModel>();
+
+        public TeamModel()
+        {
+
+        }
+        public TeamModel(string teamName, List<PersonModel> teamMembers)
+        {
+            TeamName = teamName;
+            TeamMembers = teamMembers;
+        }
+        public TeamModel(string id, string teamName, List<PersonModel> teamMembers)
+        {
+            Id = int.Parse(id);
+            TeamName = teamName;
+            TeamMembers = teamMembers;
+        }
     }
 }

@@ -42,13 +42,16 @@ namespace TrackerUI
         {
             if (ValidateForm())
             {
-                PersonModel personModel = new PersonModel(
+                PersonModel person = new PersonModel(
                     firstNameValue.Text,
                     lastNameValue.Text,
                     emailValue.Text,
                     cellphoneValue.Text);
 
-                GlobalConfig.Connection.CreatePerson(personModel);
+                person = GlobalConfig.Connection.CreatePerson(person);
+
+                selectedTeamMembers.Add(person);
+                WireUpLists();
 
                 firstNameValue.Text = "";
                 lastNameValue.Text = "";
@@ -87,17 +90,53 @@ namespace TrackerUI
         private void addMemberButton_Click(object sender, EventArgs e)
         {
             PersonModel person = (PersonModel)selectTeamMemberDropDown.SelectedItem;
-            selectedTeamMembers.Add(person);
-            availableTeamMembers.Remove(person);
-            WireUpLists();
+            if(person != null)
+            {
+                selectedTeamMembers.Add(person);
+                availableTeamMembers.Remove(person);
+                WireUpLists();
+            }
+
         }
 
         private void deleteSelectedMemberButton_Click(object sender, EventArgs e)
         {
             PersonModel person = (PersonModel)teamMembersListBox.SelectedItem;
-            availableTeamMembers.Add(person);
-            selectedTeamMembers.Remove(person);
-            WireUpLists();
+
+            if(person != null)
+            {
+                availableTeamMembers.Add(person);
+                selectedTeamMembers.Remove(person);
+                WireUpLists();
+            }
+            else if(teamMembersListBox.Items.Count == 0)
+            {
+                MessageBox.Show("No Members in the List to Delete");
+            }
+            else
+            {
+                MessageBox.Show("Please select a Member to Delete");
+            }
+
         }
+
+        private void createTeamButton_Click(object sender, EventArgs e)
+        {
+            if(teamNameValue.Text.Length != 0 && teamMembersListBox.Items.Count > 0)
+            {
+                TeamModel team = new TeamModel(teamNameValue.Text, selectedTeamMembers);
+                team = GlobalConfig.Connection.CreateTeam(team);
+
+            }
+            else if(teamNameValue.Text.Length == 0)
+            {
+                MessageBox.Show("Team Name cannot be Empty");
+            }
+            else
+            {
+                MessageBox.Show("Team Members cannot be Empty");
+            }
+        }
+
     }
 }
