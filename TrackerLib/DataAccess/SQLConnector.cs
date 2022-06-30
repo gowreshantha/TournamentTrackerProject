@@ -22,8 +22,8 @@ namespace TrackerLib.DataAccess
                 var p = new DynamicParameters();
                 p.Add("@FirstName", model.FirstName);
                 p.Add("@LastName", model.LastName);
-                p.Add("@@EmailAddress", model.Email);
-                p.Add("@@CellPhoneNumber", model.CellPhone);
+                p.Add("@@Email", model.Email);
+                p.Add("@@CellPhone", model.CellPhone);
                 p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
                 connection.Execute("dbo.spPeople_Insert", p, commandType: CommandType.StoredProcedure);
