@@ -14,9 +14,28 @@ namespace TrackerUI
 {
     public partial class CreateTeamForm : Form
     {
+        private List<PersonModel> availableTeamMembers = GlobalConfig.Connection.GetAllPersons();
+        private List<PersonModel> selectedTeamMembers =  GlobalConfig.Connection.GetAllPersons();
+
         public CreateTeamForm()
         {
             InitializeComponent();
+            WireUpLists();
+        }
+
+        /// <summary>
+        /// To Load the data into Team Select Team Member dropdown & Team Member list box
+        /// </summary>
+        private void WireUpLists()
+        {
+            selectTeamMemberDropDown.DataSource = null;
+            teamMembersListBox.DataSource = null;
+
+            selectTeamMemberDropDown.DataSource = availableTeamMembers;
+            selectTeamMemberDropDown.DisplayMember = "FullName";
+
+            teamMembersListBox.DataSource = selectedTeamMembers;
+            teamMembersListBox.DisplayMember = "FullName";
         }
 
         private void createMemberButton_Click(object sender, EventArgs e)
@@ -63,6 +82,11 @@ namespace TrackerUI
                 output = false;
             }
             return output;
+        }
+
+        private void addMemberButton_Click(object sender, EventArgs e)
+        {
+            //selectTeamMemberDropDown.Text 
         }
     }
 }

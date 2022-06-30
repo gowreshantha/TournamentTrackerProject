@@ -1,14 +1,15 @@
 ﻿using Dapper;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Text;
+using System.Linq;
 using TrackerLib.Models;
 
 namespace TrackerLib.DataAccess
 {
     public class SQLConnector : IDataConnection
     {
+        private string connectionString = GlobalConfig.GetConnectonString("Tournaments");
+
         /// <summary>
         /// Saves a new person to the database
         /// </summary>
@@ -16,7 +17,7 @@ namespace TrackerLib.DataAccess
         /// <returns>The person information, including the unique identifier</returns>
         public PersonModel CreatePerson(PersonModel model)
         {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.GetConnectonString("Tournaments")))
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(connectionString))
             {
                 var p = new DynamicParameters();
                 p.Add("@FirstName", model.FirstName);
@@ -40,7 +41,7 @@ namespace TrackerLib.DataAccess
         /// <returns>The prize information, including the unique identifier.</returns>
         public PrizeModel CreatePrize(PrizeModel model)
         {        
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.GetConnectonString("Tournaments")))
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(connectionString))
             {
                 var p = new DynamicParameters();
                 p.Add("@PlaceNumber", model.PlaceNumber);
@@ -55,6 +56,16 @@ namespace TrackerLib.DataAccess
 
                 return model;
             }
+        }
+
+        public List<PersonModel> GetAllPersons()
+        {
+            List<PersonModel> models = null;
+            using(IDbConnection connection = new System.Data.SqlClient.SqlConnection(connectionString))
+            {
+                models = connection.Query<PersonModel>("dbo.spPeople_GetAll").ToList();
+            }
+            return models;
         }
     }
 }

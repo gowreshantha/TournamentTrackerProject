@@ -34,6 +34,13 @@ namespace TrackerLib.Models
         /// </summary>
         public string CellPhone { get; set; }
 
+        public string FullName
+        {
+            get { return $"{FirstName} {LastName}"; }
+            
+        }
+
+
         public PersonModel(string firstName, string lastName, string email, string cellPhone)
         {
             FirstName = firstName;
@@ -49,6 +56,10 @@ namespace TrackerLib.Models
             LastName = lastName;
             Email = email;
             CellPhone = cellPhone;
+
+        }
+        public PersonModel()
+        {
 
         }
     }
