@@ -139,7 +139,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Required\Tournaments.bak" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
