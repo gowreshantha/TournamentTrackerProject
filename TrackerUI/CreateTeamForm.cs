@@ -15,7 +15,7 @@ namespace TrackerUI
     public partial class CreateTeamForm : Form
     {
         private List<PersonModel> availableTeamMembers = GlobalConfig.Connection.GetAllPersons();
-        private List<PersonModel> selectedTeamMembers =  GlobalConfig.Connection.GetAllPersons();
+        private List<PersonModel> selectedTeamMembers = new List<PersonModel>();
 
         public CreateTeamForm()
         {
@@ -86,7 +86,18 @@ namespace TrackerUI
 
         private void addMemberButton_Click(object sender, EventArgs e)
         {
-            //selectTeamMemberDropDown.Text 
+            PersonModel person = (PersonModel)selectTeamMemberDropDown.SelectedItem;
+            selectedTeamMembers.Add(person);
+            availableTeamMembers.Remove(person);
+            WireUpLists();
+        }
+
+        private void deleteSelectedMemberButton_Click(object sender, EventArgs e)
+        {
+            PersonModel person = (PersonModel)teamMembersListBox.SelectedItem;
+            availableTeamMembers.Add(person);
+            selectedTeamMembers.Remove(person);
+            WireUpLists();
         }
     }
 }
