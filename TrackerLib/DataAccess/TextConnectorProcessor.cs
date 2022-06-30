@@ -109,6 +109,10 @@ namespace TrackerLib.DataAccess.TextHelper
         private static string ConvertPeronsListToIDs(List<PersonModel> model)
         {
             string output = "";
+            if(model.Count == 0)
+            {
+                return "";
+            }
             foreach(PersonModel person in model)
             {
                 output += $"{person.Id}|";
