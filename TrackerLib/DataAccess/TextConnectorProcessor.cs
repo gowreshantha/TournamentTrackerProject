@@ -147,8 +147,12 @@ namespace TrackerLib.DataAccess.TextHelper
             List<string> lines = new List<string>();
             foreach(TournamentModel tournamentModel in tournaments)
             {
-                lines.Add($"{tournamentModel.Id},{tournamentModel.TournamentName},{tournamentModel.EntryFee}," +
-                    $"{ConvertTeamsListToIDs(tournamentModel.EnteredTeams)},{ConvertPrizesListToIDs(tournamentModel.Prizes)}");
+                lines.Add($@"{tournamentModel.Id},
+                             {tournamentModel.TournamentName},
+                             {tournamentModel.EntryFee},
+                             {ConvertTeamsListToIDs(tournamentModel.EnteredTeams)},
+                             {ConvertPrizesListToIDs(tournamentModel.Prizes)},
+                             {ConvertRoundListToIDs(tournamentModel.Rounds)}");
             }
             File.WriteAllLines(fileName.GetFullFilePath(), lines);
         }
@@ -200,6 +204,40 @@ namespace TrackerLib.DataAccess.TextHelper
             output = output.Substring(0, output.Length - 1);
             return output;
 
+        }
+
+        private static string ConvertRoundListToIDs(List<List<MatchupModel>> Rounds)
+        {
+            // Rounds - id^id^id|id^id^id|id^id^id
+            string output = "";
+            if (Rounds.Count == 0)
+            {
+                return "";
+            }
+            foreach (List<MatchupModel> m in Rounds)
+            {
+                output += $"{ConvertMatchupListToString(m)}|";
+            }
+
+            output = output.Substring(0, output.Length - 1);
+            return output;
+
+        }
+
+        private static string ConvertMatchupListToString(List<MatchupModel> models)
+        {
+            string output = "";
+            if (models.Count == 0)
+            {
+                return "";
+            }
+            foreach (MatchupModel matchupModel in models)
+            {
+                output += $"{matchupModel.Id}^";
+            }
+
+            output = output.Substring(0, output.Length - 1);
+            return output;
         }
     }
 }

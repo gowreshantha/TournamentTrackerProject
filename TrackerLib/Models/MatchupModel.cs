@@ -9,6 +9,7 @@ namespace TrackerLib.Models
     /// </summary>
     public class MatchupModel
     {
+        public int Id { get; set; }
         /// <summary>
         /// The set of teams that were involved in this match.
         /// </summary>

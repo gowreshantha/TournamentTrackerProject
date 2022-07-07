@@ -158,12 +158,13 @@ namespace TrackerUI
             TournamentModel tournamentModel = new TournamentModel(tournamentNameValue.Text,
                 fee, selectedTeams, selectedPrizes);
 
+            //Wire our Matchups
+
             //Create Tournament entry
             //Create all of the prizes entry
             //Create all of team entries
             GlobalConfig.Connection.CreateTournament(tournamentModel);
 
-            //Create our Matchups
         }
     }
 }

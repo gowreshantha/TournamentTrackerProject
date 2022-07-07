@@ -92,7 +92,7 @@ namespace TrackerLib.DataAccess
             return model;
         }
 
-        public TournamentModel CreateTournament(TournamentModel model)
+        public void CreateTournament(TournamentModel model)
         {
             //Load the Text File and Convert the text to List<TeamModel>
             List<TournamentModel> tournaments = TournamentFile.GetFullFilePath().LoadFile().ConvertToTournamentModel(PersonFile, TeamFile, PrizeFile);
@@ -112,7 +112,6 @@ namespace TrackerLib.DataAccess
             //Save the List<string> to the text file
             tournaments.SaveToTournamentFile(TournamentFile);
 
-            return model;
         }
 
         public List<PersonModel> GetAllPersons()

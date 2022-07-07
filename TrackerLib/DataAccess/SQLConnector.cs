@@ -82,14 +82,13 @@ namespace TrackerLib.DataAccess
             }
         }
 
-        public TournamentModel CreateTournament(TournamentModel model)
+        public void CreateTournament(TournamentModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(connectionString))
             {
                SaveTournament(connection, model);
                SaveTournamentEntries(connection, model);
-                SaveTournamentPrizes(connection, model);
-               return model;
+               SaveTournamentPrizes(connection, model);
             }
         }
 
