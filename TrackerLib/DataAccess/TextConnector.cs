@@ -91,6 +91,11 @@ namespace TrackerLib.DataAccess
             return model;
         }
 
+        public TournamentModel CreateTournament(TournamentModel model)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<PersonModel> GetAllPersons()
         {
             //Load the Text File and Convert the text to List<PrizeModel>
