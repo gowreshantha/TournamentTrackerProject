@@ -15,12 +15,10 @@ namespace TrackerLib
             switch(databaseType)
             {
                 case DatabaseType.Sql:
-                    // TODO - Create the SQL Connection
                     SQLConnector sql = new SQLConnector();
                     Connection = sql;
                     break;
                 case DatabaseType.TextFile:
-                    //TODO - Create the Text Connection
                     TextConnector text = new TextConnector();
                     Connection = text;
                     break;
