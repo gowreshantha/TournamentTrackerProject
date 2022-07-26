@@ -159,6 +159,9 @@ namespace TrackerUI
                 fee, selectedTeams, selectedPrizes);
 
             // TODO - Wire our Matchups
+            TournamentLogic.CreateRounds(tournamentModel);
+
+
 
             //Create Tournament entry
             //Create all of the prizes entry
